@@ -1,9 +1,8 @@
-
 <h1>Malaria Detection using Deep Learning 🦟🦠</h1>
 
 <p align="center">
   <a href="https://github.com/zubairsk-2710/malaria-detection">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5y9lDxspMnKJp4YmkACAlBRXhUqmb2rAypA&s" alt="Logo" width="150" height="150">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5y9lDxspMnKJp4YmkACAlBRXhUqmb2rAypA&" alt="Logo" width="150" height="150">
   </a>
 </p>
 
@@ -73,6 +72,20 @@ h5py==3.8.0</code></pre>
   <li><b>Contact Page:</b> Contains contact information for further inquiries.</li>
   <li><b>About Us Page:</b> Provides information about the project and its objectives.</li>
   <li><b>Chatbot Page:</b> Features a basic chatbot interface for user interaction.</li>
+</ul>
+
+<h2>📷 Screenshots</h2>
+<p>Here are some screenshots of the application:</p>
+<ul>
+  <li><img src="https://drive.google.com/uc?export=view&id=YOUR_SCREENSHOT_ID_1" alt="Home Page Screenshot" width="600"></li>
+  <li><img src="https://drive.google.com/uc?export=view&id=YOUR_SCREENSHOT_ID_2" alt="Prediction Page Screenshot" width="600"></li>
+  <li><img src="https://drive.google.com/uc?export=view&id=YOUR_SCREENSHOT_ID_3" alt="Contact Page Screenshot" width="600"></li>
+</ul>
+
+<h2>📹 Demo Video</h2>
+<p>Watch the demo video of the application:</p>
+<ul>
+  <li><a href="https://drive.google.com/file/d/VIDEO_FILE_ID/view" target="_blank">Watch Video</a></li>
 </ul>
 
 <h2>📋 Further Improvements</h2>
