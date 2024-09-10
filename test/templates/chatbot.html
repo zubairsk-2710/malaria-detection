@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-image: url('https://img.freepik.com/free-photo/view-mosquito-insect-with-wings_23-2151402871.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+       .chat-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20x;
+            background-color:  rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            margin-top: 120px;
+        }
+       .chat-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+       .chat-messages {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+       .message {
+            margin-bottom: 10px;
+            padding: 8px;
+            background-color: #444;
+            border-radius: 5px;
+        }
+        #user-message {
+            background-color: #666;
+        }
+        #bot-message {
+            background-color: #777;
+        }
+        #chat-form {
+            display: flex;
+            justify-content: space-between;
+        }
+        #user-input {
+            flex: 1;
+            padding: 5px;
+        }
+        #send-button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+       .suggestions {
+            margin-top: 20px;
+        }
+       .suggestion {
+            display: inline-block;
+            background-color: #555;
+            color: #fff;
+            padding: 5px 10px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #go-to-index-button {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            cursor: pointer;
+            background-color: #888;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+        .navbar{
+            width: 1200px;
+            height: 900px;
+            margin: auto;
+        }
+       
+        ul{
+            float: left;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        ul li{
+            list-style: none;
+            margin-left: 62px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        
+        ul li a{
+            text-decoration: none;
+            color: #fff;
+            font-family: Arial;
+            font-weight: bold;
+            transition: 0.4s ease-in-out;
+        }
+        
+        ul li a:hover{
+            color: #ff7200;
+        }
+        .zubair h1{
+            font-family: 'Times New Roman';
+            font-size: 50px;
+            padding-left: 70px;
+            margin-top: 5%;
+            letter-spacing: 2px;
+            color:white
+        }
+        .zubair span{
+            color: #ff7200;
+            font-size: 65px
+        }
+        
+    </style>
+</head>
+<body>
+    <div  class="menu">
+        <div class="zubair">     
+            <h1>MALARIA DETECTION USING<br><span>Image Classifier</span> <br></h1>
+        </div>
+        <ul>
+            <li><a id="home" href="/">HOME</a></li>
+            <li><a id="about" href="/about">ABOUT</a></li>
+            <li><a id="pediction" href="/index">PREDICTION</a></li>
+            <li><a id="contact" href="contact">CONTACT</a></li>
+        </ul>
+    </div>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Chatbot</h2>
+        </div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <form id="chat-form">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button id="send-button">Send</button>
+        </form>
+        <div class="suggestions" id="suggestions"></div>
+        <button id="go-to-index-button">Go to main Page</button>
+    </div>
+
+    <script>
+        const chatForm = document.getElementById('chat-form');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+        const chatMessages = document.getElementById('chat-messages');
+        const suggestionsContainer = document.getElementById('suggestions');
+        const goToIndexButton = document.getElementById('go-to-index-button');
+
+        const chatbotResponses = {
+            'hello': 'Hi! How can I help you?',
+            'hi': 'Hello! What\'s on your mind?',
+            'how are you': 'I\'m doing great, thanks! How about you?',
+            'what is your name': 'I don\'t have a personal name, but you can call me Chatbot!',
+            'what causes malaria': 'Malaria is caused by Plasmodium parasites, which are transmitted through the bites of infected Anopheles mosquitoes.',
+            'how many species of plasmodium can infect humans': 'Five species: P. falciparum, P. vivax, P. ovale, P. malariae, and P. knowlesi.',
+            'which plasmodium species is the most deadly': 'P. falciparum.',
+            'what are the common symptoms of malaria': 'Fever, chills, headache, nausea, vomiting, anemia, and cough.',
+            'how to prevent malaria': 'Avoid mosquito bites by using insect repellents, covering up with clothing, using mosquito nets, and using a pregnancy test to prevent female-to-male transmission.',
+            'which drug is commonly used to treat malaria': 'Artemisinin-based combination therapy (ACT).',
+            'how does artemisinin work': 'Artemisinin binds to the malaria parasite, disrupting its ability to reproduce and cause disease.',
+            'which organism causes schistosomiasis': 'The schistosome organism, which belongs to the class of parasitic worms known as trematodes.',
+            'how many species of schistosomes are there': 'Over 200 species.',
+            'which organism causes bilharzia': 'The parasite schistosoma haematobium.',
+            'which drugs are used to treat bilharzia': 'Praziquantel and albendazole.',
+            'which drug is commonly used to treat schistosomiasis': 'Albendazole.',
+            'how to prevent schistosomiasis': 'Preventive measures include not swimming in contaminated water, maintaining good hygiene, and treating exposed soil.',
+            'what is a typical life cycle of schistosome': '1. Mating occurs in the intermediate host (e.g., a snail). 2. Female worms release their eggs into the environment. 3. The eggs hatch into infective cercariae, which can be transmitted to a new human host. 4. After infection, the cercariae penetrate the skin of the definitive host and transform into adult worms in the liver.',
+            'how does bilharzia transmission occur': 'Infection occurs through ingestion of the eggs of the parasite schistosoma haematobium. These eggs are released into the environment through the feces of infected humans. Ingestion of the eggs leads to the formation of the schistosome worms in the liver.',
+            'sadath': 'hello hero.',
+            'default': 'I didn\'t understand that. Can you please rephrase?'
+        };
+
+        // Display all responses as suggestions
+        Object.keys(chatbotResponses).forEach(key => {
+            if (key !== 'default') {
+                const suggestionElement = document.createElement('div');
+                suggestionElement.innerText = key;
+                suggestionElement.className = 'suggestion';
+                suggestionElement.addEventListener('click', () => {
+                    userInput.value = key;
+                    chatForm.dispatchEvent(new Event('submit'));
+                });
+                suggestionsContainer.appendChild(suggestionElement);
+            }
+        });
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const userInputValue = userInput.value.trim().toLowerCase(); // Convert user input to lowercase
+            if (userInputValue!== '') {
+                const userMessageElement = document.createElement('div');
+                userMessageElement.innerHTML = `👨 ${userInput.value}`;
+                userMessageElement.className = 'message';
+                chatMessages.appendChild(userMessageElement);
+
+                let botResponse = chatbotResponses.default;
+                for (const key in chatbotResponses) {
+                    if (userInputValue === key.toLowerCase()) { // Exact comparison with lowercase conversion
+                        botResponse =chatbotResponses[key];
+                        break;
+                    }
+                }
+
+                const botMessageElement = document.createElement('div');
+                botMessageElement.innerHTML = `🤖 ${botResponse}`;
+                botMessageElement.className = 'message';
+                chatMessages.appendChild(botMessageElement);
+
+                userInput.value = '';
+                chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
+            }
+        });
+
+        goToIndexButton.addEventListener('click', () => {
+            window.location.href = '/';
+        });
+    </script>
+</body>
+</html>

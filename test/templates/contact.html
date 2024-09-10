@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Us</title>
+    <style>
+        body {
+            background-color: #000; /* black background */
+            color: #fff; /* white text */
+            font-family: Arial, sans-serif;
+        }
+        .main {
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.5) 50%), url('https://www.technocrazed.com/wp-content/uploads/2015/12/black-wallpaper-to-set-as-background-23.jpg');
+            background-position: center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .ff {
+            color: #fff; /* white text */
+            padding: 20px;
+            text-align: center;
+        }
+        .nav-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .nav-list li {
+            display: inline;
+            margin-right: 100px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            margin-top: 20px;
+            margin-left: 200px;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 400px;
+        }
+        h1, h2 {
+            text-decoration: underline; /* underline h1 and h2 */
+        }
+        form {
+            margin: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+        input[type="submit"] {
+            background-color: #5DADE2;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+        }
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            color: #000;
+            padding: 20px;
+            border-radius: 5px;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            pointer-events: none;
+        }
+        .popup.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .navbar{
+            width: 1200px;
+            height: 900px;
+            margin: auto;
+        }
+        ul {
+            float: left;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        ul li {
+            list-style: none;
+            margin-left: 62px;
+            margin-top: 0px;
+            font-size: 14px;
+        }
+        ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-family: Arial;
+            font-weight: bold;
+            transition: 0.4s ease-in-out;
+        }
+        ul li a:hover {
+            color: #ff7200;
+        }
+        .navbar {
+            width: 1200px;
+            height: 900px;
+            margin: auto;
+        }
+        ul {
+            float: left;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        ul li {
+            list-style: none;
+            margin-left: 162px;
+            margin-top: 0px;
+            font-size: 14px;
+        }
+        ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-family: Arial;
+            font-weight: bold;
+            transition: 0.4s ease-in-out;
+        }
+        ul li a:hover {
+            color: #ff7200;
+        }
+        .a:hover {
+            box-shadow: 0px 0px 10px 5px rgba(0, 255, 0, 0.5);
+        }
+        .content:hover {
+            box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="ff">
+        <h1>Contact Us</h1>
+    </div>
+    <div class="menu">
+        <ul>
+            <li><a id="home" class="a" href="/">HOME</a></li>
+            <li><a id="about" class="a" href="/about">ABOUT</a></li>
+            <li><a id="pediction" class="a" href="/index">PREDICTION</a></li>
+            <li><a id="contact" class="a" href="/contact">CONTACT</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <h2>Get in Touch</h2>
+        <form id="contact-form" action="index.php" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" class="a"><br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="a"><br><br>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" class="a"></textarea><br><br>
+            <input type="submit" value="Send" id="send-button" class="a">
+           <div class="popup" id="popup">
+            Your response has been sent.
+        </div>
+        </form>
+        <div class="popup" id="popup">
+            Your response has been sent.
+        </div>
+    </div>
+</div>
+<script>
+    // Add click event listeners to each list item
+    document.getElementById('home').addEventListener('click', function() {
+        window.location.href = '/';
+    });
+
+    document.getElementById('prediction').addEventListener('click', function() {
+        window.location.href = '/index';
+    });
+
+    document.getElementById('about').addEventListener('click', function() {
+        window.location.href = '/about';
+    });
+
+    document.getElementById('contact').addEventListener('click', function() {
+        window.location.href = '/contact';
+    });
+
+    // Add submit event listener to the form
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+
+        // Show the popup message
+        const popup = document.getElementById('popup');
+        popup.classList.add('show');
+
+        // Hide the popup message after 2 seconds
+        setTimeout(function() {
+            popup.classList.remove('show');
+        }, 2000);
+    });
+</script>
+</body>
+</html>

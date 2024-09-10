@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Malaria Detection using Image Classifier</title>
+    <link rel="stylesheet" href="styles.css"> <!-- link to your stylesheet -->
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/free-photo/view-mosquito-insect-with-wings_23-2151402871.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .navbar .menu {
+            text-align: center;
+            padding: 14px 20px;
+        }
+        .navbar .menu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .navbar .menu ul li {
+            margin: 0 20px;
+        }
+        .navbar .menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.4s ease-in-out;
+        }
+        .navbar .menu ul li a:hover {
+            color: #ff7200;
+        }
+        main {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Ensures the background image doesn't affect the text readability */
+        }
+        .about-us {
+            max-width: 800px;
+            margin: 20px auto; /* Centers the content */
+            padding: 20px;
+            background-color: #fff; /* Solid background color */
+            color: #000; /* Text color inside the about-us section */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .about-us h1,
+        .about-us h2 {
+            color: white;
+        }
+        .about-us p {
+            line-height: 1.6;
+            color: white;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="menu">
+                <ul>
+                    <li><a id="home" class="a" href="/">HOME</a></li>
+                    <li><a id="about" class="a" href="/about">ABOUT</a></li>
+                    <li><a id="prediction" class="a" href="/index">PREDICTION</a></li>
+                    <li><a id="contact" class="a" href="/contact">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="about-us">
+            <h1>About Us</h1>
+            <p>We are a team of researchers and developers dedicated to creating innovative solutions for healthcare using artificial intelligence and machine learning. Our mission is to develop a reliable and accurate malaria detection system using image classification, to help reduce the burden of malaria on individuals and communities worldwide.</p>
+           
+            <h2>Our Vision</h2>
+            <p>Our vision is to create a world where malaria is no longer a threat to human life. We believe that by leveraging the power of artificial intelligence and machine learning, we can develop a system that can accurately detect malaria and help healthcare professionals provide timely and effective treatment.</p>
+            <h2>Our Approach</h2>
+            <p>We are using a deep learning-based approach to develop our malaria detection system. Our system uses convolutional neural networks (CNNs) to analyze images of blood samples and detect the presence of malaria parasites. We are also working to improve the accuracy and reliability of our system by collecting and annotating a large dataset of images.</p>
+ 
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Malaria Detection using Image Classifier</p>
+    </footer>
+</body>
+</html>

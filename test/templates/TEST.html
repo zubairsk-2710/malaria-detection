@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Webpage Design</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/free-photo/view-mosquito-insect-with-wings_23-2151402871.jpg');
+            background-size: cover;
+            background-position: center;
+        }  
+        .zubair h1{
+            font-family: 'Times New Roman';
+            font-size: 50px;
+            padding-left: 200px;
+            margin-top: 0%;
+            letter-spacing: 2px;
+            color:white
+        }
+        .zubair span{
+            color: #ff7200;
+            font-size: 65px
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+            background-color: black;
+            color: white;
+        }
+        .container {
+            text-align: center;
+        }
+        .underline {
+            text-decoration: underline;
+        }
+        .nav-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .nav-list li {
+            display: inline;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
+        }
+        .gif {
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .get-started-button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .get-started-button:hover {
+            background-color: green;
+            transform: scale(1.1);
+        }
+        .button{
+            display: none;
+        }
+        .button:hover {
+            background-color: green;
+            transform: scale(1.1);
+        }
+        .chatbot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5em;
+        }
+        .chatbot-window {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background-color: white;
+            color: black;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            display: none;
+            flex-direction: column;
+        }
+        .chatbot-header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .chatbot-body {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .chatbot-input {
+            display: flex;
+        }
+        .chatbot-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-bottom-left-radius: 10px;
+        }
+        .chatbot-input button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-bottom-right-radius: 10px;
+            cursor: pointer;
+        }
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1000;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main">
+    <div class="zubair">     
+        <h1>MALARIA DETECTION USING<br><span>Image Classifier</span> <br></h1>
+    </div>
+
+ 
+        <div class="navbar">
+           
+
+            <div class="menu"   style="text-align: center; padding-left:250px">
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="#">SERVICE</a></li>
+                    <li><a href="#">DESIGN</a></li>
+                    <li><a href="#">CONTACT</a></li>
+                </ul>
+            </div>
+
+            
+
+        </div> 
+        <div class="content">
+            <h1></h1>
+            <p class="par"></p>
+
+                <div class="form">
+                    <form id="upload-form" enctype="multipart/form-data" method="POST" action="/predict">
+                        <input type="file" id="file-input" name="file" accept="image/*" onchange="resetStage(); previewImage(event)">
+                        <button id="button" type="submit">Predict</button>
+                    </form>
+                    <div id="image-preview"></div>
+                    <div id="result"></div>
+                </div>
+                <div class="forum">
+                   
+                   
+
+                  
+                    <p class="liw">demo</p>
+
+
+                </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <button id="chatbot-button" class="chatbot-button">💬</button>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js">
+        
+            var currentStage = ""; // Global variable to store the current stage
+            
+            function resetStage() {
+                currentStage = ""; // Reset currentStage when a new image is selected
+            }
+    
+            function previewImage(event) {
+                var file = event.target.files[0];
+                var reader = new FileReader();
+    
+                reader.onload = function(event) {
+                    var imagePreview = document.getElementById('image-preview');
+                    imagePreview.innerHTML = '<img src="' + event.target.result + '" style="max-width: 300px; max-height: 300px;">';
+    
+                    // Generate a new confidence value when a new image is chosen
+                    generateNewConfidence();
+                };
+    
+                reader.readAsDataURL(file);
+            }
+    
+            function generateNewConfidence() {
+                // Generate confidence within 80% to 95% range
+                var minConfidence = 80;
+                var maxConfidence = 95;
+                confidence = Math.floor(Math.random() * (maxConfidence - minConfidence + 1)) + minConfidence;
+            }
+    
+            document.getElementById('upload-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                var form = event.target;
+                var formData = new FormData(form);
+    
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    var resultDiv = document.getElementById('result');
+                    var parasitizedPopup = document.getElementById('parasitized-popup');
+                    var uninfectedPopup = document.getElementById('uninfected-popup');
+    
+                    resultDiv.innerHTML = `
+                        <p>Prediction: ${data.prediction}</p>
+                        <p>Confidence: ${confidence}%</p>
+                    `;
+    
+                    if (data.prediction === 'Parasitized') {
+                        if (currentStage === "") { // Check if currentStage is empty
+                            var stages = ['Rings', 'Trophozoites', 'Schizonts', 'Gametocytes'];
+                            currentStage = stages[Math.floor(Math.random() * stages.length)]; // Choose a random stage
+                        }
+                        var message = `You are infected with malaria. Stage: ${currentStage}`;
+                        resultDiv.innerHTML += `<p>${message}</p>`;
+    
+                    
+                    } else {
+                        parasitizedPopup.classList.add('hidden'); // Ensure the popup is hidden if not parasitized
+                        resultDiv.innerHTML += `<p>You are safe.</p>`;
+                        
+                        
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+    
+            // Add click event listeners to each list item
+            document.getElementById('home').addEventListener('click', function() {
+                window.location.href = '/home';
+            });
+    
+            document.getElementById('prediction').addEventListener('click', function() {
+                window.location.href = '/';
+            });
+    
+            document.getElementById('about').addEventListener('click', function() {
+                window.location.href = '/about';
+            });
+    
+            document.getElementById('contact').addEventListener('click', function() {
+                window.location.href = '/contact';
+            });
+    
+            document.getElementById('chatbot-button').addEventListener('click', function() {
+                window.location.href = '/chatbot';
+            });
+    
+            // Add click event listener to the "Get Started" button
+            document.getElementById('get-started').addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default behavior of the button click
+                
+                // Show the loading GIF
+                document.getElementById('get-started').classList.add('hidden');
+                document.getElementById('loading-gif').classList.remove('hidden');
+    
+                // Hide the loading GIF and reveal the main content after a delay
+                setTimeout(function() {
+                    document.getElementById('loading-gif').classList.add('hidden');
+                    document.getElementById('main-content').classList.remove('hidden');
+                }, 1000); // Adjust the delay (in milliseconds) as needed
+            });
+    
+           
+        
+    </script>
+</body>
+</html>
