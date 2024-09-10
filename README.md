@@ -3,7 +3,7 @@
 
 <p align="center">
   <a href="https://github.com/zubairsk-2710/malaria-detection">
-    <img src="https://pngimage.net/wp-content/uploads/2018/06/malaria-in-png-1.png" alt="Logo" width="150" height="150">
+    <img src="[https://pngimage.net/wp-content/uploads/2018/06/malaria-in-png-1.png](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5y9lDxspMnKJp4YmkACAlBRXhUqmb2rAypA&s)" alt="Logo" width="150" height="150">
   </a>
 </p>
 
